@@ -1,5 +1,7 @@
 # Sales Analysis | Modern Data Engineering Azure Project
-Sales Analysis Data Engineering End-to-End Project using Microsoft Azure services and Power BI.
+## Objective
+The primary objective of this project is to design and implement a comprehensive data pipeline that ingests, processes, and visualizes data from the sales dataset using Azure Cloud services and Power BI. This project aims to demonstrate the ability to extract meaningful insights from a relational dataset to support data-driven decision-making for the business.
+In today's data-driven world, organizations need efficient methods to collect, process, and analyze large datasets to gain actionable insights. The real-time dataset contains a retail company's operations, contains valuable information about customers, orders, products, and sales. A Power BI dashboard is built to provide insights into sales trends, customer demographics, and product performance metrics, allowing stakeholders to drill down into specific areas of interest.
 
 ## Introduction
 This project demonstrates an end-to-end data engineering solution on Microsoft Azure, designed to handle the ingestion, transformation, and analysis of sales data from an on-premises SQL Server database to a comprehensive reporting platform in Power BI. The solution uses Azure Data Lake Storage Gen2, Azure Data Factory, Databricks, Azure Synapse Analytics, and Power BI with added security managed through Azure Key Vault.
@@ -42,17 +44,17 @@ Original data source - https://learn.microsoft.com/en-us/sql/samples/adventurewo
 7. __Microsoft Power BI__:
      - Connects to Azure Synapse Analytics for data visualization and reporting, enabling insights and analysis of the ingested and transformed data.
 
-     Resource Group:
+     __Resource Group:__
      ![Resource Group Image](screenshots/CaptureServices.png)
 ### Workflow
 1. __Data Ingestion__:
      - Data is ingested from an on-premises SQL Server database using SHIR and ADF, moving data securely to Azure Data Lake Storage Gen2.
 
-     SHIR:
+     __SHIR:__
 
      ![SHIR Image](screenshots/SHIR.png)
 
-     Pipeline:
+     __Pipeline:__
      ![Pipeline Image](screenshots/CaptureWholePipeline.png)
 
 2. __Data Transformation__:
@@ -60,19 +62,21 @@ Original data source - https://learn.microsoft.com/en-us/sql/samples/adventurewo
      - Databricks processes the Silver data and produces a refined dataset in the Gold layer.
   
      __Scripts used for project__:
-     1. [bronze to silver.ipynb](Data%20Transformations/bronze to silver.ipynb)
+     1. [storagemount.ipynb](<Data Transformations/storagemount.ipynb>)
+     2. [bronze to silver.ipynb](<Data Transformations/bronze to silver.ipynb>)
+     3. [silver to gold.ipynb](<Data Transformations/silver to gold.ipynb>)
 
-     Databricks Workspace:
+     __Databricks Workspace:__
      ![Databricks Image](screenshots/CaptureDatabricks.png)
 
 4. __Data Loading and Analysis__:
      - The transformed data from the Gold layer is loaded into Azure Synapse Analytics.
      - Power BI accesses the data from Synapse to create interactive reports and visualizations.
   
-     Data Model:
+     __Data Model:__
      ![Data Model Image](screenshots/CaptureDataModel.png)
      
-     Dashboard:
+     __Dashboard:__
      ![Dashboard Image](screenshots/CaptureDashboard.png)
 
 ### Security
