@@ -1,23 +1,18 @@
-# Sales Analytics | Modern Data Engineering Azure Project
-Sales Analytics Data Engineering using Microsoft Azure and Power BI services.
+# Sales Analysis | Modern Data Engineering Azure Project
+Sales Analysis Data Engineering End-to-End Project using Microsoft Azure services and Power BI.
 
 ## Introduction
 This project demonstrates an end-to-end data engineering solution on Microsoft Azure, designed to handle the ingestion, transformation, and analysis of sales data from an on-premises SQL Server database to a comprehensive reporting platform in Power BI. The solution uses Azure Data Lake Storage Gen2, Azure Data Factory, Databricks, Azure Synapse Analytics, and Power BI with added security managed through Azure Key Vault.
 
 ## Architecture
-![Project Architecture](screenshots/Architecture.png)
+![Project Architecture Image](screenshots/Architecture.png)
 
 ## Technology Used
 1. Programming Languages - PySpark
 2. Scripting Language - SQL
 3. Microsoft Azure Cloud
-     - Azure Data Factory
-     - Azure Data Lake Storage Gen2
-     - Azure Databricks
-     - Azure Synapse Analytics
-     - Azure Key Vault
 4. Reporting Tool - Power BI
-5. Database - On-premises Microsoft SQL Server
+5. Database - Onprem Microsoft SQL Server
 6. Self-Hosted Integration Runtime
 
 ## Dataset Used
@@ -27,8 +22,61 @@ Here is the dataset used - https://github.com/dheerajmaddula04/sales-analytics/b
 
 Original data source - https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms
 
-## Challenges
+## Project Overview
+### Pipeline Components
+1. __Self-Hosted Integration Runtime (SHIR)__:
+     - Used for secure data transfer from the on-premises SQL Server to Azure. The SHIR facilitates connectivity between the on-prem environment and Azure Data Factory.
+2. __Azure Data Factory (ADF)__:
+     - Orchestrates the data pipeline by moving data from the on-premises SQL Server to Azure Data Lake Storage Gen2 via SHIR.
+     - Performs data ingestion, using various activities to manage data flow and ensure seamless pipeline execution.
+3. __Azure Data Lake Storage Gen2__:
+     - Stores ingested data in Bronze, Silver, and Gold layers to manage raw, cleansed, and curated datasets, respectively.
+4. __Databricks__:
+     - Transforms data from the Silver layer to the Gold layer.
+     - Handles complex transformations, cleansing, and data preparation for downstream analytics.
+5. __Azure Synapse Analytics__:
+     - Acts as the data warehouse, loading curated data from the Gold layer for advanced analytics.
+     - Enables efficient query processing and serves as the source for Power BI reporting.
+6. __Azure Key Vault__:
+     - Manages and secures sensitive information such as database connection strings and API keys used throughout the pipeline.
+7. __Microsoft Power BI__:
+     - Connects to Azure Synapse Analytics for data visualization and reporting, enabling insights and analysis of the ingested and transformed data.
+
+     Resource Group:
+     ![Resource Group Image](screenshots/CaptureServices.png)
+### Workflow
+1. __Data Ingestion__:
+     - Data is ingested from an on-premises SQL Server database using SHIR and ADF, moving data securely to Azure Data Lake Storage Gen2.
+
+     SHIR:
+
+     ![SHIR Image](screenshots/SHIR.png)
+
+     Pipeline:
+     ![Pipeline Image](screenshots/CaptureWholePipeline.png)
+
+2. __Data Transformation__:
+     - Data in the Bronze layer is cleansed and transformed into the Silver layer.
+     - Databricks processes the Silver data and produces a refined dataset in the Gold layer.
+  
+     __Scripts used for project__:
+     1. [bronze to silver.ipynb](Data%20Transformations/bronze to silver.ipynb)
+
+     Databricks Workspace:
+     ![Databricks Image](screenshots/CaptureDatabricks.png)
+
+4. __Data Loading and Analysis__:
+     - The transformed data from the Gold layer is loaded into Azure Synapse Analytics.
+     - Power BI accesses the data from Synapse to create interactive reports and visualizations.
+  
+     Data Model:
+     ![Data Model Image](screenshots/CaptureDataModel.png)
+     
+     Dashboard:
+     ![Dashboard Image](screenshots/CaptureDashboard.png)
+
+### Security
+Azure Key Vault ensures the security of sensitive credentials used in the pipeline, such as database passwords and access keys.
 
 ## Conclusion
-
-## Recommendation
+This project demonstrates how to build a scalable and secure data engineering solution on Azure, using best practices in data storage, transformation, and analytics. It leverages SHIR for secure on-premises connectivity, data layer separation in Azure Data Lake, and integration with powerful analytics and visualization tools like Azure Synapse and Power BI.
