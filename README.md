@@ -1,2 +1,2 @@
-# sales-analytics
-Sales Analytics Data Engineering using Microsoft Azure &amp; Power BI services
+# Sales-Analytics
+Sales Analytics Data Engineering using Microsoft Azure and Power BI services
